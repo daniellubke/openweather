@@ -1,0 +1,137 @@
+{
+    "_version": "1.40.0",
+    "sap.app": {
+        "id": "openweathermap.openweather",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.7.0",
+            "toolsId": "0fe19bca-b321-4110-bf2d-5b171097d17d"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.102.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "openweathermap.openweather.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            },
+            "DataProjects": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "model/dataprojects.json"
+            },
+            "DataItaly": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "model/dataItaly.json"
+            },
+            "DataIndia": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "model/dataIndia.json"
+            },
+            "Months": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "model/dataMonths.json"
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "openweathermap.openweather.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteList",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetList"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetList": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "List",
+                    "viewName": "List"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "openweathermap.openweather.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    }
+}
